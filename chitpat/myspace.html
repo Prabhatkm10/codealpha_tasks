@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChitPat - Mini Social Media</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">ChitPat</h1>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <nav class="nav-icons">
+                    <i class="fas fa-home"></i>
+                    <i class="fas fa-plus-square"></i>
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-user"></i>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Profile Section -->
+            <div class="profile-section">
+                <div class="profile-info">
+                    <div class="profile-picture">
+                        <img src="my image for chitpat .jpg" alt="Prabhat Kumar">
+                    </div>
+                    <div class="profile-details">
+                        <h2 class="username">prabhat.kumar</h2>
+                        <p class="full-name">Prabhat Kumar</p>
+                        <p class="bio">📸 Photography enthusiast | 🌍 Travel lover | 💻 Tech geek</p>
+                        <div class="stats">
+                            <span><strong>15</strong> posts</span>
+                            <span><strong id="followers-count">245</strong> followers</span>
+                            <span><strong>180</strong> following</span>
+                        </div>
+                        <button class="follow-btn" id="follow-btn">Follow</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Posts Grid -->
+            <div class="posts-container" id="posts-container">
+                <!-- Posts will be generated dynamically -->
+            </div>
+        </main>
+
+        <!-- Post Modal -->
+        <div class="modal" id="post-modal">
+            <div class="modal-content">
+                <span class="close" id="close-modal">&times;</span>
+                <div class="modal-post">
+                    <div class="modal-image">
+                        <img id="modal-img" src="" alt="">
+                    </div>
+                    <div class="modal-sidebar">
+                        <div class="modal-header">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Profile">
+                            <span>prabhat.kumar</span>
+                        </div>
+                        <div class="modal-actions">
+                            <button class="action-btn like-btn" data-action="like">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="action-btn comment-btn" data-action="comment">
+                                <i class="far fa-comment"></i>
+                            </button>
+                            <button class="action-btn share-btn" data-action="share">
+                                <i class="far fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="likes-count">
+                            <span id="modal-likes">0 likes</span>
+                        </div>
+                        <div class="post-caption">
+                            <p><strong>prabhat.kumar</strong> <span id="modal-caption"></span></p>
+                        </div>
+                        <div class="comments-section" id="comments-section">
+                            <!-- Comments will be loaded here -->
+                        </div>
+                        <div class="comment-input">
+                            <input type="text" placeholder="Add a comment..." id="comment-input">
+                            <button id="post-comment">Post</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

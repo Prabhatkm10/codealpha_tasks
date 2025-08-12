@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>chitpat | Prabhat Kumar</title>
+  <style>
+    html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: url(merakist-CNbRsQj8mHQ-unsplash.jpg)
+    no-repeat center center fixed;
+  background-size: cover;
+  color: #222;
+}
+.background {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.3);
+  z-index: -2;
+}
+
+/* Enhanced Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%);
+  padding: 18px 50px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.08), 0 2px 10px rgba(36,145,236,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(36,145,236,0.1);
+}
+.nav-brand {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #2491ec 0%, #3498db 50%, #5dade2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 4px rgba(36,145,236,0.2);
+  position: relative;
+}
+.nav-brand::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #2491ec, #3498db);
+  border-radius: 2px;
+  opacity: 0.6;
+}
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 12px;
+  margin: 0; padding: 0;
+}
+.navbar li {
+  position: relative;
+}
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+.navbar a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #eaf3fb 0%, #d6ebf9 100%);
+  transition: left 0.3s ease;
+  z-index: -1;
+  border-radius: 23px;
+}
+.navbar a:hover::before {
+  left: 0;
+}
+.navbar a.active {
+  background: linear-gradient(135deg, #2491ec 0%, #3498db 100%);
+  color: white;
+  border-color: rgba(255,255,255,0.3);
+  box-shadow: 0 4px 15px rgba(36,145,236,0.3);
+  transform: translateY(-1px);
+}
+.navbar a.active::before {
+  display: none;
+}
+.navbar a:hover:not(.active) {
+  color: #2491ec;
+  border-color: rgba(36,145,236,0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(36,145,236,0.15);
+}
+
+/* Container styling */
+.page-container {
+  background: rgba(255,255,255,0.93);
+  max-width: 850px;
+  margin: 32px auto 44px auto;
+  padding: 30px 30px 20px 30px;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+}
+
+/* Profile Card */
+.profile-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+.profile-avatar {
+  width: 120px;
+  border-radius: 50%;
+  border: 7px solid #eaf3fb;
+  box-shadow: 0 2px 16px #2491ec44;
+}
+.profile-title {
+  font-size: 2rem;
+  margin: 14px 0 8px 0;
+  letter-spacing: 1.5px;
+}
+.profile-follow-btn {
+  margin-top: 10px;
+  padding: 10px 34px;
+  background-color: #2491ec;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  border-radius: 22px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: background 0.18s, border 0.18s;
+}
+.profile-follow-btn.following {
+  background: #2ecc71;
+  border-color: #19a76f;
+}
+.profile-stats {
+  margin: 12px 0 0 0;
+  color: #555;
+  font-size: 1.09rem;
+}
+
+/* Posts Feed */
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.post-card {
+  background: #f6fbff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px #1a90e01c;
+  padding: 0 0 18px 0;
+  overflow: hidden;
+  transition: box-shadow 0.17s;
+}
+.post-card:hover {
+  box-shadow: 0 6px 24px #3498db19;
+}
+.post-img {
+  width: 100%;
+  height: 310px;
+  object-fit: cover;
+  display: block;
+}
+.post-content {
+  padding: 18px 24px 0 24px;
+}
+.post-title {
+  font-size: 1.19rem;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+.post-text {
+  margin-bottom: 11px;
+  color: #3c3c3c;
+}
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 10px;
+}
+.post-actions button {
+  outline: none;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 18px;
+  background: #2491ec;
+  color: #fff;
+  font-size: 0.99rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.post-actions button:hover {
+  background: #196dc5;
+}
+.like-count {
+  font-size: 1.03rem;
+}
+
+/* Comments */
+.comments-block {
+  margin: 20px 24px 4px 24px;
+}
+.comments-title {
+  font-size: 1.03rem;
+  margin-bottom: 6px;
+  color: #2491ec;
+  font-weight: bold;
+}
+.comment {
+  margin-left: 8px;
+  margin-bottom: 4px;
+  color: #2b2b29;
+}
+.comment-input-row {
+  display: flex;
+  margin-top: 9px;
+}
+.comment-input-row input {
+  flex: 1;
+  padding: 7px 10px;
+  border-radius: 14px;
+  border: 1.2px solid #b6dcf5;
+  font-size: 0.98rem;
+  margin-right: 7px;
+}
+.comment-input-row button {
+  padding: 7px 18px;
+  border-radius: 14px;
+  border: none;
+  background: #2491ec;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+.comment-input-row button:hover {
+  background: #1a6fab;
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+  .nav-brand {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+  .navbar ul {
+    gap: 8px;
+  }
+  .navbar a {
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+  .page-container {
+    padding: 12px 5px 8px 5px;
+    border-radius: 0;
+  }
+  .profile-avatar {
+    width: 80px;
+  }
+  .post-img { height: 150px; }
+}
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <nav class="navbar">
+    <div class="nav-brand">chitpat</div>
+    <ul>
+      <li><a href="#" id="homeLink" class="active">Home</a></li>
+      <li><a href="myspace.html" class="btn">Profile</a></li>
+      
+    </ul>
+  </nav>
+
+  <main id="mainContent">
+    <!-- Home/profile content will be loaded here -->
+  </main>
+
+  <script>
+    // --------- Data Model ----------
+// Mixed animal and fashion images from Unsplash
+const images = [
+  // Animal images
+  'photo-1583337130417-3346a1be7dee', // tiger
+  'photo-1544568100-847a948585b9', // elephant
+  'photo-1552053831-71594a27632d', // lion
+  'photo-1549366021-9f761d040a94', // giraffe
+  'photo-1580855733764-084b90737008', // panda
+  'photo-1571566882372-1598d88abd90', // wolf
+  'photo-1559827260-dc66d52bef19', // fox
+  // Fashion/model images
+  'photo-1529626455594-4ff0802cfb7e', // fashion model
+  'photo-1515886657613-9f3515b0c78f', // fashion portrait
+  'photo-1488426862026-3ee34a7d66df', // fashion shoot
+  'photo-1517804447618-8dbfdce3ec6e', // model
+  'photo-1487412720507-e7ab37603c6f', // fashion style
+  'photo-1496747611176-843222e1e57c', // fashion photography
+  'photo-1524504388940-b1c1722653e1' // fashion model
+];
+
+// Updated post titles and descriptions for animals and fashion
+const postTitles = [
+  "Majestic Tiger in the Wild",
+  "Gentle Giant - African Elephant", 
+  "King of the Jungle",
+  "Graceful Giraffe at Sunset",
+  "Adorable Panda Moments",
+  "Wild Wolf Spirit",
+  "Cunning Fox Portrait",
+  "Haute Couture Elegance",
+  "Fashion Forward Style",
+  "Editorial Fashion Shoot",
+  "Model Spotlight",
+  "Street Style Inspiration",
+  "Fashion Photography Art",
+  "Runway Ready Look"
+];
+
+const postDescriptions = [
+  "The raw power and beauty of nature captured in one frame",
+  "Witnessing the gentle nature of these magnificent creatures", 
+  "The fierce beauty and majesty of the lion in its natural habitat",
+  "The elegant silhouette of a giraffe against the golden hour",
+  "Pure joy and playfulness captured in this panda moment",
+  "The untamed spirit of the wild captured perfectly",
+  "Intelligence and cunning reflected in those piercing eyes",
+  "High fashion meets artistic expression in this stunning piece",
+  "Bold choices and confident style that turns heads",
+  "Behind the scenes of a professional fashion photoshoot",
+  "Celebrating the art of modeling and self-expression",
+  "Real fashion inspiration found on the streets",
+  "Where fashion becomes art and art becomes fashion",
+  "Ready to conquer the runway with this powerful look"
+];
+
+const posts = images.map((img, idx) => ({
+  id: idx + 1,
+  title: postTitles[idx],
+  text: postDescriptions[idx],
+  imgUrl: `https://images.unsplash.com/${img}?auto=format&fit=crop&w=800&q=90`,
+  likes: Math.floor(Math.random()*99+1),
+  comments: [],
+}));
+
+let followers = 122, following = 85, userFollowing = false;
+
+// --------- Navigation and Rendering ----------
+function setActiveNav(linkId) {
+  document.querySelectorAll('.navbar a').forEach(a=>a.classList.remove('active'));
+  document.getElementById(linkId).classList.add('active');
+}
+function renderHome() {
+  setActiveNav('homeLink');
+  document.getElementById('mainContent').innerHTML = `
+    <div class="page-container">
+      <h2 style="margin-bottom:28px;">Home Feed</h2>
+      <div class="posts-list" id="postsList"></div>
+    </div>`;
+  renderPosts();
+}
+
+ 
+
+function renderPosts(profile = false) {
+  let container = document.getElementById(profile ? 'profilePosts' : 'postsList');
+  container.innerHTML = '';
+  posts.slice().reverse().forEach(post => {
+    const postCard = document.createElement('div');
+    postCard.className = 'post-card';
+    postCard.innerHTML = `
+      <img src="${post.imgUrl}" class="post-img" alt="Post Image ${post.id}" loading="lazy" />
+      <div class="post-content">
+        <div class="post-title">${post.title}</div>
+        <div class="post-text">${post.text}</div>
+        <div class="post-actions">
+          <button onclick="likePost(${post.id})">❤️ Like (<span id="like-${post.id}">${post.likes}</span>)</button>
+          <button onclick="sharePost(${post.id})">🔁 Share</button>
+        </div>
+      </div>
+      <div class="comments-block" id="comments-${post.id}">
+        <div class="comments-title">Comments</div>
+        <div id="post-comments-list-${post.id}"></div>
+        <div class="comment-input-row">
+          <input type="text" id="comment-input-${post.id}" placeholder="Add a comment..."/>
+          <button onclick="addComment(${post.id})">Post</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(postCard);
+    displayComments(post.id);
+  });
+}
+
+// --------- Profile Follow/Unfollow ----------
+function toggleFollow() {
+  userFollowing = !userFollowing;
+  followers += userFollowing ? 1 : -1;
+  document.getElementById('followersCount').innerText = followers;
+  const btn = document.getElementById('followBtn');
+  btn.textContent = userFollowing ? 'Following' : 'Follow';
+  btn.classList.toggle('following', userFollowing);
+}
+
+// --------- Post Actions (Like, Share, Comment) ----------
+window.likePost = function(postId) {
+  const post = posts.find(p=>p.id===postId);
+  post.likes++;
+  document.getElementById(`like-${postId}`).innerText = post.likes;
+};
+window.sharePost = function(postId) {
+  alert('You have shared ' + posts.find(p=>p.id===postId).title);
+};
+window.addComment = function(postId) {
+  const input = document.getElementById(`comment-input-${postId}`);
+  const text = input.value.trim();
+  if (!text) return;
+  const post = posts.find(p=>p.id===postId);
+  post.comments.push(text);
+  input.value = '';
+  displayComments(postId);
+};
+function displayComments(postId) {
+  const post = posts.find(p=>p.id===postId);
+  const listDiv = document.getElementById(`post-comments-list-${postId}`);
+  listDiv.innerHTML = '';
+  post.comments.slice(-3).forEach(cmt =>{
+    const div = document.createElement('div');
+    div.className = 'comment';
+    div.textContent = `💬 ${cmt}`;
+    listDiv.appendChild(div);
+  });
+}
+
+// --------- Routing ----------
+document.getElementById('homeLink').onclick = e => { e.preventDefault(); renderHome(); }
+document.getElementById('profileLink').onclick = e => { e.preventDefault(); renderProfile(); }
+
+// --------- Initial Render ----------
+renderHome();
+  </script>
+</body>
+</html>

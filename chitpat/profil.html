@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChitPat - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .home-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            color: white;
+        }
+        .home-content {
+            max-width: 600px;
+        }
+        .home-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #ddd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .home-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .home-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .home-buttons .btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+        .home-buttons .btn:hover {
+            background: white;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="home-container">
+        <div class="home-content">
+            <h1>Welcome to ChitPat</h1>
+            <p>The best place to share your moments and connect with friends. Join our community and start exploring.</p>
+            <div class="home-buttons">
+                <a href="login.html" class="btn">Login</a>
+                <a href="login.html" class="btn">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
